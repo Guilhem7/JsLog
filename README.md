@@ -55,7 +55,9 @@ Here is the results of the following script:
 require('vendor/autoload.php');
 use JsLog\JsLog;
 
-JsLog::getInstance()->log('Hey from javascript console before headers was sent');
+// By adding True jsLog will wait until headers has been sent (relying on ob if activated else `headers_sent` function)
+// By default, it is called with none, and will log as soon as called :D
+JsLog::getInstance(True)->log('Hey from javascript console before headers was sent');
 echo "<!DOCTYPE html><html><head></head><body>";
 
 $jslog = JsLog::getInstance();
