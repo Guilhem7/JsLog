@@ -3,7 +3,7 @@ An easy to use php library to show log on js console
 Debug php without broking your front
 
 # Start
-JsLog is a minimalist library allowing you to put debug message along you code.
+JsLog is a minimalist library allowing you to put debug message along your code.
 1. Import the package in your code:
 ```php
 require('vendor/autoload.php');
