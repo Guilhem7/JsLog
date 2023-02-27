@@ -1,0 +1,21 @@
+{
+    "name": "guilhem/js-log",
+    "description": "A library to debug php on javascript console, to not mess with front while debugging",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Guilhem7",
+            "email": "guilhemrioux@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "JsLog\\": "src"
+        },
+        "files": [
+            "src/JsLog.php"
+        ]
+    }
+}
