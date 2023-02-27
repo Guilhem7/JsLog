@@ -25,6 +25,7 @@ JsLog::getInstance()->msg('Success message !');
 $jslog->err('Error triggered...');
 ```
 3. Custom renderer
+
 *Jslog* allow you to render your message with css via a custom function:
 
 ```php
@@ -38,8 +39,11 @@ $jslog->custom(
 ```
 
 4. See messages
+
 Into your web browser watch the javascript console
 
-5. When debug are sent
+5. When debug messages are sent ?
+
+
 Jslog will send debug only when output buffering have started. Else, message will be put in a FIFO array.
 The queue of messages will be flushed at the next call of a log function or at the end of the script.
