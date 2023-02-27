@@ -69,7 +69,8 @@ class JsLog
 	}
 
 	private function displayDebug($res){
-		if( ob_get_length() === 0 ){
+		// ob_start() has not been called, so relying on headers_sent function to send debug messages
+		if( (ob_get_level() && ob_get_length() === 0) || (!ob_get_level() && !headers_sent()) ){
 			array_push($this->queue, $res);
 		} else {
 			$this->purgeQueue();
