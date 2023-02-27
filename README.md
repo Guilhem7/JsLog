@@ -47,3 +47,29 @@ Into your web browser watch the javascript console
 
 Jslog will send debug only when output buffering have started. Else, message will be put in a FIFO array.
 The queue of messages will be flushed at the next call of a log function or at the end of the script.
+
+# Examples
+Here is the results of the following script:
+```php
+<?php
+require('vendor/autoload.php');
+use JsLog\JsLog;
+
+JsLog::getInstance()->log('Hey from javascript console before headers was sent');
+echo "<!DOCTYPE html><html><head></head><body>";
+
+$jslog = JsLog::getInstance();
+
+$jslog->msg("A message from PHP display in js console");
+$jslog->err("Error here: \"" . $_SERVER['SCRIPT_NAME'] . '"');
+$jslog->custom(
+	"[CUSTOM DEBUG]\n", "color:orange",
+	"Whouhou it worked\n", "color:red;border:1px solid red;",
+	"Whouhou it worked\n", "color:darkgrey;font-weight:800;",
+	"..Debug stop..\n", "color:blue;font-weight:bold"
+	);
+echo "</body></html>";
+```
+Inside the javascript console:
+
+![](imgs/rendered_logs.png)
