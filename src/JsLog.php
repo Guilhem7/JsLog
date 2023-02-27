@@ -69,7 +69,7 @@ class JsLog
 	}
 
 	private function displayDebug($res){
-		if(!headers_sent()){
+		if( ob_get_length() === 0 ){
 			array_push($this->queue, $res);
 		} else {
 			$this->purgeQueue();
@@ -102,7 +102,7 @@ class JsLog
 				$css = self::CSS_RED;
 				break;
 		}
-		
+
 		$sanit = str_replace('\n', "\n", $msg); // Needed to be sure "\n" are interpreted
 
 		$js_debug = self::setArgs(
