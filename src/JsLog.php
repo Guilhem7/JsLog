@@ -21,7 +21,7 @@ class JsLog
 	private const DEFAULT_VAL = "???";
 
 	private array $queue; // in case headers hasn't been sent
-	private int $stTime;
+	private $waitForHeaders;
 
 	// Type of debug
 	public const DEBUG = '[DEBUG]';
@@ -34,9 +34,9 @@ class JsLog
 	public const CSS_WARN = 'color: #bada55';
 	public const CSS_NONE = '';
 
-	private function __construct(){
+	private function __construct($waitForHeaders = False){
 		$this->queue = array();
-		$this->stTime = 0;
+		$this->waitForHeaders = $waitForHeaders;
 	}
 
 	private static function format_log(){
@@ -70,7 +70,8 @@ class JsLog
 
 	private function displayDebug($res){
 		// ob_start() has not been called, so relying on headers_sent function to send debug messages
-		if( (ob_get_level() && ob_get_length() === 0) || (!ob_get_level() && !headers_sent()) ){
+		if( $this->waitForHeaders &&
+			((ob_get_level() && ob_get_length() === 0) || (!ob_get_level() && !headers_sent())) ){
 			array_push($this->queue, $res);
 		} else {
 			$this->purgeQueue();
@@ -125,9 +126,9 @@ class JsLog
 		$this->log($msg, self::MSG);
 	}
 
-	public static function getInstance(){
+	public static function getInstance($waitForHeaders = False){
 		if(is_null(self::$instance)){
-			self::$instance = new JsLog();
+			self::$instance = new JsLog($waitForHeaders);
 		}
 		return self::$instance;
 	}
