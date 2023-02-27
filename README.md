@@ -44,9 +44,10 @@ Into your web browser watch the javascript console
 
 5. When debug messages are sent ?
 
-
+If you pass the True args at the construction
 Jslog will send debug only when output buffering have started. Else, message will be put in a FIFO array.
 The queue of messages will be flushed at the next call of a log function or at the end of the script.
+Else, it will send debug message directly when called
 
 # Examples
 Here is the results of the following script:
