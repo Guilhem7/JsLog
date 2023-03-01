@@ -58,7 +58,7 @@ class JsLog
 		$args = array("");
 		for ($i=0; $i < count($arr) - 1; $i += 2) {
 			$args[0] .= '"%c" + atob("' . base64_encode($arr[$i]) . '") + '; // avoid problem of badchars
-			$args[] = '"' . htmlspecialchars($arr[$i + 1]) . '"';
+			$args[] = '"' . htmlspecialchars($arr[$i + 1]) . ' "';
 		}
 
 		$args[0] = rtrim($args[0], ' + ');
