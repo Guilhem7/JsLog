@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the JsDebug package.
+ * This file is part of the JsLog package.
  *
  * (c) 2023 RIOUX Guilhem
  *
